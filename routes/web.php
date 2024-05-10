@@ -13,11 +13,9 @@ Route::get('/', function () {
 });
 
 Route::middleware([TokenNotAvailable::class]) -> group(function () {
-    Route::middleware([UserType::class]) -> group(function () {
         Route::get('/Dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
         Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
 
-    });
 });
 
 Route::middleware([TokenAvailable::class]) -> group(function () {

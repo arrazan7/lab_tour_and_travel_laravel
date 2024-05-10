@@ -74,6 +74,9 @@
         <div class="d-grid mt-5 text-center">
             <a href="{{ route('create_custom') }}" method="GET" class="btn btn-warning btn-block">Custom Paket Destinasi</a>
         </div>
+        <div class="d-grid mt-5 text-center">
+            <a href="{{ route('logout_akun') }}" method="GET" class="btn btn-danger btn-block">Log Out</a>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

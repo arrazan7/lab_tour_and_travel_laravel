@@ -2,29 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Jangan lupa menyertakan ini
+use App\Http\Controllers\DestinasiController; // Jangan lupa menyertakan ini
 use App\Http\Controllers\PaketDestinasiController; // Jangan lupa menyertakan ini
 use App\Http\Controllers\JadwalDestinasiController; // Jangan lupa menyertakan ini
-use App\Http\Middleware\TokenNotAvailable;
-use App\Http\Middleware\TokenAvailable;
-use App\Http\Middleware\UserType;
+use App\Http\Middleware\AlredyLoginMiddleware;
+use App\Http\Middleware\TokenMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([TokenNotAvailable::class]) -> group(function () {
-        Route::get('/Dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-        Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
-
+Route::middleware([TokenMiddleware::class]) -> group(function () {
+    Route::get('/Dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::get('/Home', [AuthController::class, 'home'])->name('home');
+    Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
 });
 
-Route::middleware([TokenAvailable::class]) -> group(function () {
+Route::middleware([AlredyLoginMiddleware::class]) -> group(function () {
     Route::get('/Login', [AuthController::class, 'login'])->name('login_akun');
     Route::post('/Authenticate', [AuthController::class, 'authenticate'])->name('auth_akun');
     Route::get('/Register', [AuthController::class, 'register'])->name('register_akun');
     Route::post('/StoreRegister', [AuthController::class, 'storeRegister'])->name('register_store');
-
 });
+
+Route::get('/Destinasi', [DestinasiController::class, 'index'])->name('read_destinasi');
 
 Route::get('/PaketDestinasi', [PaketDestinasiController::class, 'index'])->name('read_paket');
 Route::get('/CreatePaket', [PaketDestinasiController::class, 'create'])->name('create_paket');

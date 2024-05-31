@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: poppins;
+}
+
+.admin-sidebar {
+    background-color: #3BB7FF;
+}
+
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.menu-active {
+  background-color: #3198D4;
+}
+
+.menu:hover {
+  background-color: #3198D4;
+}
+
+.logout-container:hover {
+  background-color: #3198D4;
+}
+
+input {
+  border: solid #919191 2px !important;
+}
+
+.profile-circle {
+  background-color: #3BB7FF;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.blue-pil {
+  background-color: #3BB7FF;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 3px 10px;
+}
+
+.red-pil {
+  background-color: #EF233C;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 3px 10px;
+}
+
+.admin-table {
+  width: 100%;
+}
+
+.admin-table thead{
+  background-color: #F4F4F4;
+  color: black;
+  padding: 100px 0px;
+}
+
+.admin-table th {
+  font-weight: 500;
+  text-align: center;
+}
+
+.admin-table td {
+  text-align: center;
+}
+
+.form-container {
+  padding: 0% 20%;
+}

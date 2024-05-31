@@ -23,9 +23,13 @@ class UserType
         ]) -> get('http://localhost:8000/api/profile');
 
         if ($response -> ok()) {
-            $userType = $response -> json()['data']['user_type'];
-            if ($userType == 'admin') {
-                return redirect() -> route('read_paket');
+            $profile = $response -> json()['data'];
+
+            if ($profile['user_type'] = 'admin') {
+                return view('public.homePage', compact('profile'));
+            }
+            elseif ($profile['user_type'] = 'public') {
+                return view('public.home', compact('profile'));
             }
         } else {
             // Handle potential token-related errors (e.g., expired token)

@@ -50,7 +50,7 @@
                         <td>{{ $json['total_jarak_tempuh'] }}</td>
                         <td class="text-center">
                             <a class="example-image-link" href="{{ route('edit_foto_paket', ['id' => $json['id_paketdestinasi']]) }}" title="Edit Foto" data-toggle="tooltip">
-                                <img class=" img-fluid rounded" src="{{ asset('/storage/paket_destinasi/'.$json['foto']) }}" style="width: 150px"/>
+                                <img class=" img-fluid rounded" src="{{ asset('storage/paket_destinasi/'.$json['foto']) }}" style="width: 150px"/>
                             </a>
                         </td>
                         <td>{{ $json['tanggal_dibuat'] }}</td>
@@ -75,7 +75,7 @@
             <a href="{{ route('create_custom') }}" method="GET" class="btn btn-warning btn-block">Custom Paket Destinasi</a>
         </div>
         <div class="d-grid mt-5 text-center">
-            <a href="{{ route('logout_akun') }}" method="GET" class="btn btn-danger btn-block">Log Out</a>
+            <a href="{{ route('read_destinasi') }}" method="GET" class="btn btn-primary btn-block">Lihat Daftar Destinasi</a>
         </div>
     </div>
 

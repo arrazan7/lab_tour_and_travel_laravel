@@ -25,7 +25,7 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#">Paket</a></li>
                         <li class="nav-item"><a class="nav-link" href="#custom">Custom</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary" href="{{ route('logout_akun') }}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary" href="{{ route('logout_akun') }}" id="logout-button">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -164,118 +164,6 @@
                         </div>
                     </div>
                 @endfor
-                    {{-- <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image1.png" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image2.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image3.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image4.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image5.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image6.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image7.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-custom d-flex">
-                        <div class="card" style="width: 16rem;">
-                            <div class="card-body">
-                                <img src="/images/image8.jpg" class="card-pict" alt="Your Image">
-                                <div class="overlay-container">
-                                    <div class="overlay-text">
-                                        <p class="paket">Lorem ipsum dolor sit amet</p>
-                                        <span class="badge price">Rp. 150.000</span>
-                                        <p><a href="#">Lihat detail ></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
 

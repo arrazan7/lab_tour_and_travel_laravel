@@ -37,13 +37,13 @@
                                 <form class="mt-5" action="{{ route('auth_akun') }}" method="POST">
                                 @csrf
                                     <div class="mb-3">
-                                        <input type="text" class="form-control input-field @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" placeholder="Username">
+                                        <input type="text" class="form-control input-field @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" id="username" placeholder="Username">
                                         @error('name')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <input type="password" class="form-control input-field @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                        <input type="password" class="form-control input-field @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
                                         @error('password')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
@@ -56,7 +56,7 @@
                                             <a href="#" class="text-blue-primary">Lupa Password?</a>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100 mt-3">Masuk</button>
+                                    <button type="submit" class="btn btn-primary w-100 mt-3" id="login-button">Masuk</button>
                                     <p class="mt-3 text-neutral">atau</p>
                                     <button  class="btn btn-google">
                                         <a href="#" class="text-blue-primary">

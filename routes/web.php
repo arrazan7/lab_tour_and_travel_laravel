@@ -26,14 +26,19 @@ Route::middleware([AlredyLoginMiddleware::class]) -> group(function () {
 });
 
 Route::get('/Destinasi', [DestinasiController::class, 'index'])->name('read_destinasi');
+Route::get('/CreateDestinasi', [DestinasiController::class, 'create'])->name('create_destinasi');
+Route::post('/StoreDestinasi', [DestinasiController::class, 'store'])->name('store_destinasi');
+Route::get('/EditDestinasi/{id}', [DestinasiController::class, 'edit'])->name('edit_destinasi');
+Route::post('/UpdateDestinasi/{foto}', [DestinasiController::class, 'update'])->name('update_destinasi');
+Route::get('/DeleteDestinasi/{id}', [DestinasiController::class, 'destroy'])->name('delete_destinasi');
 
 Route::get('/PaketDestinasi', [PaketDestinasiController::class, 'index'])->name('read_paket');
+Route::post('/FilterPaket', [PaketDestinasiController::class, 'filter'])->name('filter_paket');
 Route::get('/CreatePaket', [PaketDestinasiController::class, 'create'])->name('create_paket');
 Route::post('/StorePaket', [PaketDestinasiController::class, 'store'])->name('store_paket');
-Route::get('/EditNamaPaket/{id}', [PaketDestinasiController::class, 'editNama'])->name('edit_nama_paket');
-Route::post('/UpdateNamaPaket', [PaketDestinasiController::class, 'updateNamaPaket'])->name('update_nama_paket');
-Route::get('/EditFotoPaket/{id}', [PaketDestinasiController::class, 'editFoto'])->name('edit_foto_paket');
-Route::post('/UpdateFotoPaket/{foto}', [PaketDestinasiController::class, 'updateFotoPaket'])->name('update_foto_paket');
+Route::get('/EditPaket/{id}', [PaketDestinasiController::class, 'edit'])->name('edit_paket');
+Route::post('/UpdatePaket/{foto}', [PaketDestinasiController::class, 'update'])->name('update_paket');
+Route::get('/DeletePaket/{id}', [PaketDestinasiController::class, 'destroy'])->name('delete_paket');
 
 Route::get('/CreateCustomPaket', [PaketDestinasiController::class, 'createCustom'])->name('create_custom');
 
@@ -46,4 +51,4 @@ Route::get('/EditJamSelesai/{id}', [JadwalDestinasiController::class, 'editJamSe
 Route::post('/UpdateJamSelesai', [JadwalDestinasiController::class, 'updateJamSelesai'])->name('update_jam_selesai');
 Route::get('/EditIdDestinasi/{id}', [JadwalDestinasiController::class, 'editIdDestinasi'])->name('edit_id_destinasi');
 Route::post('/UpdateIdDestinasi', [JadwalDestinasiController::class, 'updateIdDestinasi'])->name('update_id_destinasi');
-Route::get('/DeleteDestinasi/{id}', [JadwalDestinasiController::class, 'destroy'])->name('delete_jadwal');
+Route::get('/DeleteJadwal/{id}', [JadwalDestinasiController::class, 'destroy'])->name('delete_jadwal');

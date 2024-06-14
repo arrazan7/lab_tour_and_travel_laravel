@@ -83,12 +83,12 @@
                             </ul>
                         </td>
                         <td>
-                            <form action="{{ route('edit_destinasi', ['id' => $json['id_destinasi']]) }}" method="GET">
+                            <form action="{{ route('edit_destinasi_test', ['id' => $json['id_destinasi']]) }}" method="GET">
                                 <button class="fa-solid fa-pen-to-square fa-beat" style="color: #000000;" title="Edit Destinasi" data-toggle="tooltip"></button>
                             </form>
                         </td>
                         <td>
-                            <form action="{{ route('delete_destinasi', ['id' => $json['id_destinasi']]) }}" method="GET" title="Hapus Destinasi" data-toggle="tooltip">
+                            <form action="{{ route('delete_destinasi_test', ['id' => $json['id_destinasi']]) }}" method="GET" title="Hapus Destinasi" data-toggle="tooltip">
                             @csrf
                             @method('DELETE')
                                 <button class="fa-solid fa-trash fa-bounce" style="color: #ff0000;" onClick="return confirm('Apakah Anda yakin ingin menghapus destinasi ini?')"></button>
@@ -107,10 +107,10 @@
             <a href="{{ route('create_jadwal', ['id' => $id_paketdestinasi]) }}" method="GET" class="btn btn-success btn-block">Tambah Jadwal Destinasi</a>
         </div> --}}
         <div class="d-grid mt-3 text-center">
-            <a href="{{ route('read_paket') }}" method="GET" class="btn btn-primary btn-block">Kembali ke List Paket Destinasi</a>
+            <a href="{{ route('read_paket_test') }}" method="GET" class="btn btn-primary btn-block">Kembali ke List Paket Destinasi</a>
         </div>
         <div class="d-grid mt-5 text-center">
-            <a href="{{ route('create_destinasi') }}" method="GET" class="btn btn-success btn-block">Tambah Destinasi</a>
+            <a href="{{ route('create_destinasi_test') }}" method="GET" class="btn btn-success btn-block">Tambah Destinasi</a>
         </div>
     </div>
 

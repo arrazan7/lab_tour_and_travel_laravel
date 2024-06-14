@@ -39,7 +39,7 @@ class AuthController extends Controller
                     return redirect() -> route('dashboard');
                 }
                 elseif ($profile['user_type'] == 'public') {
-                    return redirect() -> route('home');
+                    return redirect() -> route('public_paket_index');
                 }
             }
         }
@@ -69,6 +69,7 @@ class AuthController extends Controller
         if ($response -> ok()) {
             // Successful logout
             session() -> forget('access_token'); // Clear token from session
+            session() -> forget('filterData');
             return redirect() -> route('login_akun'); // Redirect to login page
         } else {
             // Failed logout
@@ -119,39 +120,7 @@ class AuthController extends Controller
 
         if ($response -> ok()) {
             $profile = $response -> json()['data'];
-            return view('public.homePage', compact('profile'));
-        } else {
-            // Handle potential token-related errors (e.g., expired token)
-            session() -> forget('access_token'); // Clear token on error
-            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
-        }
-    }
-
-    public function home()
-    {
-        $accessToken = session() -> get('access_token'); // Retrieve token from session
-
-        $responseProfile = Http::withHeaders([
-            'Authorization' => "Bearer {$accessToken}",
-        ]) -> get('http://localhost:8000/api/profile');
-
-        if ($responseProfile -> ok()) {
-            // Berhasil mendapat data profile
-            $profile = $responseProfile -> json()['data'];
-
-            $responsePaket = Http::get('http://127.0.0.1:8000/api/read-paket');
-            $dataPaketDestinasi = json_decode($responsePaket -> getBody(), true);
-
-            if (!$responsePaket -> ok() || $dataPaketDestinasi === null) {
-                // Gagal mendapat data paket
-                echo "Kesalahan saat mengambil data dari API";
-                exit;
-            }
-            else {
-                // Berhasil mendapat data paket
-                $data = $dataPaketDestinasi['data'];
-                return view('public.home', compact('profile', 'data'));
-            }
+            return view('layouts.dashboard-nav', compact('profile'));
         } else {
             // Handle potential token-related errors (e.g., expired token)
             session() -> forget('access_token'); // Clear token on error

@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h2>Formulir Update ID Destinasi</h2>
-        <form action="{{ route('update_id_destinasi') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('update_id_destinasi_test') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="mb-3 mt-3">
                 <label for="id_paket">ID Paket Destinasi:</label>

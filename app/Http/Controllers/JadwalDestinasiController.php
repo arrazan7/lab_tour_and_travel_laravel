@@ -54,11 +54,11 @@ class JadwalDestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Jadwal destinasi berhasil dibuat.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Jadwal destinasi gagal dibuat. id paket = ' .$data['id_paketdestinasi']. '');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Disimpan!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -103,11 +103,11 @@ class JadwalDestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Jam Mulai berhasil diperbarui.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Jam Mulai gagal diperbarui.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
         }
     }
 
@@ -138,11 +138,11 @@ class JadwalDestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Jam Selesai berhasil diperbarui.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Jam Selesai gagal diperbarui.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
         }
     }
 
@@ -173,11 +173,11 @@ class JadwalDestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'ID Destinasi berhasil diperbarui.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'ID Destinasi gagal diperbarui.');
-            return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+            return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
         }
     }
 
@@ -203,11 +203,11 @@ class JadwalDestinasiController extends Controller
             if ($deleteResponse -> ok()) {
                 // Data jadwal berhasil dihapus
                 session() -> flash('alert', 'Jadwal berhasil dihapus.');
-                return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Jadwal Berhasil Dihapus!']);
+                return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Jadwal Berhasil Dihapus!']);
             } else {
                 // Terjadi kesalahan saat menghapus data jadwal
                 session() -> flash('alert', 'Jadwal gagal dihapus.');
-                return redirect() -> route('read_jadwal', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Jadwal Gagal Dihapus!']);
+                return redirect() -> route('read_jadwal_test', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Jadwal Gagal Dihapus!']);
             }
         }
     }

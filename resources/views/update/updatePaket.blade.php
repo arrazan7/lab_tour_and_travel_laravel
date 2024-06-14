@@ -14,7 +14,7 @@
     @endif
     <div class="container mt-5">
         <h2>Formulir Update Paket Destinasi</h2>
-        <form action="{{ route('update_paket', ['foto' => $data['foto']]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('update_paket_test', ['foto' => $data['foto']]) }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="mb-3 mt-3">
                 <label for="id_paketdestinasi">ID Paket Destinasi:</label>

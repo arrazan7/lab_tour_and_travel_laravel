@@ -60,17 +60,17 @@
                         <td>{{ $json['waktu_tempuh'] }}</td>
                         <td>{{ $json['waktu_sebenarnya'] }}</td>
                         <td>
-                            <a href="{{ route('edit_id_destinasi', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit ID Destinasi" data-toggle="tooltip">
+                            <a href="{{ route('edit_id_destinasi_test', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit ID Destinasi" data-toggle="tooltip">
                                 {{ $json['id_destinasi'] }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('edit_jam_mulai', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jam Mulai" data-toggle="tooltip">
+                            <a href="{{ route('edit_jam_mulai_test', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jam Mulai" data-toggle="tooltip">
                                 {{ $json['jam_mulai'] }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('edit_jam_selesai', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jam Selesai" data-toggle="tooltip">
+                            <a href="{{ route('edit_jam_selesai_test', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jam Selesai" data-toggle="tooltip">
                             {{ $json['jam_selesai'] }}
                             </a>
                         </td>
@@ -78,7 +78,7 @@
                         <td>{{ $json['zona_selesai'] }}</td>
                         <td>{{ $json['catatan'] }}</td>
                         <td>
-                            <form action="{{ route('delete_jadwal', ['id' => $json['id_jadwaldestinasi']]) }}" method="GET" title="Hapus Jadwal" data-toggle="tooltip">
+                            <form action="{{ route('delete_jadwal_test', ['id' => $json['id_jadwaldestinasi']]) }}" method="GET" title="Hapus Jadwal" data-toggle="tooltip">
                             @csrf
                             @method('DELETE')
                                 <button class="fa-solid fa-trash fa-bounce" style="color: #ff0000;" onClick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')"></button>
@@ -94,10 +94,10 @@
             </table>
         </div>
         <div class="d-grid mt-5 text-center">
-            <a href="{{ route('create_jadwal', ['id' => $id_paketdestinasi]) }}" method="GET" class="btn btn-success btn-block">Tambah Jadwal Destinasi</a>
+            <a href="{{ route('create_jadwal_test', ['id' => $id_paketdestinasi]) }}" method="GET" class="btn btn-success btn-block">Tambah Jadwal Destinasi</a>
         </div>
         <div class="d-grid mt-3 text-center">
-            <a href="{{ route('read_paket') }}" method="GET" class="btn btn-primary btn-block">Kembali ke List Paket Destinasi</a>
+            <a href="{{ route('read_paket_test') }}" method="GET" class="btn btn-primary btn-block">Kembali ke List Paket Destinasi</a>
         </div>
     </div>
 

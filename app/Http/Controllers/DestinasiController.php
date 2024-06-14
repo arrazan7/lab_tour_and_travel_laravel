@@ -123,11 +123,11 @@ class DestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Destinasi berhasil dibuat.');
-            return redirect() -> route('read_destinasi') -> with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect() -> route('read_destinasi_test') -> with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Destinasi gagal dibuat.');
-            return redirect() -> route('read_destinasi') -> with(['failed' => 'Data Gagal Disimpan!']);
+            return redirect() -> route('read_destinasi_test') -> with(['failed' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -254,11 +254,11 @@ class DestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Destinasi berhasil diperbarui.');
-            return redirect() -> route('read_destinasi') -> with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect() -> route('read_destinasi_test') -> with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Destinasi gagal diperbarui.');
-            return redirect() -> route('read_destinasi') -> with(['failed' => 'Data Gagal Disimpan!']);
+            return redirect() -> route('read_destinasi_test') -> with(['failed' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -292,11 +292,11 @@ class DestinasiController extends Controller
 
                 // Data berhasil dikirimkan
                 session() -> flash('alert', 'Destinasi berhasil dihapus.');
-                return redirect() -> route('read_destinasi') -> with(['success' => 'Data Berhasil Dihapus!']);
+                return redirect() -> route('read_destinasi_test') -> with(['success' => 'Data Berhasil Dihapus!']);
             } else {
                 // Terjadi kesalahan saat mengirim data
                 session() -> flash('alert', 'Destinasi gagal dihapus.');
-                return redirect() -> route('read_destinasi') -> with(['failed' => 'Data Gagal Dihapus!']);
+                return redirect() -> route('read_destinasi_test') -> with(['failed' => 'Data Gagal Dihapus!']);
             }
         }
     }

@@ -22,7 +22,11 @@ class PaketDestinasiController extends Controller
         }
         else {
             $data = $dataPaketDestinasi['data'];
-            return view('read.paketDestinasi', compact('data'));
+            $lokasi = [];
+            $tema = [];
+            $durasi = [];
+            $harga = [];
+            return view('read.paketDestinasi', compact('data', 'lokasi', 'tema', 'durasi', 'harga'));
         }
     }
 
@@ -56,7 +60,7 @@ class PaketDestinasiController extends Controller
             }
         }
 
-        // Mengambil data checkbox durasi yang dicentang/dipilih
+        // Mengambil data checkbox harga yang dicentang/dipilih
         // Rp0 - Rp50.000, Rp50.001 - Rp150.000, Rp150.001 - Rp300.000, Rp300.001 - Rp500.000, Rp500.001 - ...
         $harga = [];
         for ($i = 1; $i <= 5; $i++) {
@@ -83,8 +87,9 @@ class PaketDestinasiController extends Controller
             exit;
         }
         else {
+            $filter = $response['filter'];
             $data = $response['data'];
-            return view('read.filterPaket', compact('data'));
+            return view('read.filterPaket', compact('filter', 'data'));
         }
     }
 
@@ -137,11 +142,11 @@ class PaketDestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Paket Destinasi berhasil dibuat.');
-            return redirect() -> route('read_paket') -> with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect() -> route('read_paket_test') -> with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Paket Destinasi gagal dibuat.');
-            return redirect() -> route('read_paket') -> with(['failed' => 'Data Gagal Disimpan!']);
+            return redirect() -> route('read_paket_test') -> with(['failed' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -208,11 +213,11 @@ class PaketDestinasiController extends Controller
         if ($response -> ok()) {
             // Data berhasil dikirimkan
             session() -> flash('alert', 'Paket Destinasi berhasil diperbarui.');
-            return redirect() -> route('read_paket') -> with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect() -> route('read_paket_test') -> with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Terjadi kesalahan saat mengirim data
             session() -> flash('alert', 'Paket Destinasi gagal diperbarui.');
-            return redirect() -> route('read_paket') -> with(['failed' => 'Data Gagal Disimpan!']);
+            return redirect() -> route('read_paket_test') -> with(['failed' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -247,11 +252,11 @@ class PaketDestinasiController extends Controller
 
                 // Data berhasil dikirimkan
                 session() -> flash('alert', 'Paket Destinasi berhasil dihapus.');
-                return redirect() -> route('read_paket') -> with(['success' => 'Data Berhasil Dihapus!']);
+                return redirect() -> route('read_paket_test') -> with(['success' => 'Data Berhasil Dihapus!']);
             } else {
                 // Terjadi kesalahan saat mengirim data
                 session() -> flash('alert', 'Paket Destinasi gagal dihapus.');
-                return redirect() -> route('read_paket') -> with(['failed' => 'Data Gagal Dihapus!']);
+                return redirect() -> route('read_paket_test') -> with(['failed' => 'Data Gagal Dihapus!']);
             }
         }
     }

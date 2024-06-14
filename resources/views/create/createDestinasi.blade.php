@@ -14,7 +14,7 @@
     @endif
     <div class="container mt-5">
         <h2>Formulir Destinasi Baru</h2>
-        <form action="{{ route('store_destinasi') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('store_destinasi_test') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="mb-3 mt-3">
                 <label for="nama_destinasi">Nama Destinasi:</label>

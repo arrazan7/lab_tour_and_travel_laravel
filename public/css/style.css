@@ -42,15 +42,20 @@ section {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
+
+.dropdown-container {
+    max-height: 250px;
+    overflow: auto;
+}
   
-  .dropdown-menu label {
+.dropdown-menu label {
     display: block;
     padding: 8px 12px;
-  }
+}
   
-  .dropdown-menu label:hover {
+.dropdown-menu label:hover {
     background-color: #f1f1f1;
-  }
+}
 
 .col-custom {
     padding: 0 !important;
@@ -146,4 +151,21 @@ a{
 .blue-link {
     color: #3BB7FF;
     text-decoration: none;
+}
+
+#price {
+    padding: 20px 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #919191;
+}
+
+#price h4 {
+    color: #29BF12;
+    font-weight: bold;
+}
+
+.text-green {
+    color: #29BF12;
 }

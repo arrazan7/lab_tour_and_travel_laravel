@@ -35,7 +35,7 @@ class AlredyLoginMiddleware
                 return redirect() -> route('dashboard');
             }
             elseif ($profile['user_type'] == 'public') {
-                return redirect() -> route('home');
+                return redirect() -> route('public_paket_index');
             }
         }
     }

@@ -1,14 +1,29 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link href="css/admin.css" rel="stylesheet">
+<style>
+    .fa-solid {
+        display: inline-block;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 20px;
+        color: #000000;
+    }
+</style>
 
 <body>
+    @if (session('alert'))
+        <script>
+            alert("{{ session('alert') }}");
+        </script>
+    @endif
     <div class="d-flex w-100 h-100">
         <div class="d-flex flex-column flex-shrink-0 admin-sidebar" style="width: 300px; height: 100%;">
             <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-md-0 me-md-auto m-5">
                 <img src="{{ asset('images/logo-white.png') }}" style="width: 120px; height: 100%;">
             </a>
             <ul class="nav nav-pills flex-column mt-3 mb-auto">
-                <li class="py-2 px-4 {{ request() -> routeIs('admin_paket_index') ? 'menu-active' : (request() -> routeIs('create_paket') ? 'menu-active' : 'menu') }}">
+                <li class="py-2 px-4 {{ request() -> routeIs('admin_paket_index') ? 'menu-active' : (request() -> routeIs('create_paket') ? 'menu-active' : (request() -> routeIs('admin_jadwal_index') ? 'menu-active' : 'menu')) }}">
                     <a href="{{ route('admin_paket_index') }}" class="nav-link text-white" aria-current="page">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-map mx-2" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
@@ -107,3 +122,4 @@
     </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/1fe05764da.js" crossorigin="anonymous"></script>

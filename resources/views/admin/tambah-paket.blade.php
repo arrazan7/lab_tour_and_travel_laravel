@@ -3,43 +3,28 @@
 @section('content')
 <div class="container form-container">
     <h6 class="text-center mb-4">Tambah Paket</h6>
-    <form action="">
-        <label for="name">Nama Paket</label>
-        <input type="text" name="name" id="name" class="form-control mb-3 mt-2" required>
-        <label for="name">Durasi</label>
-        <input type="text" name="name" id="name" class="form-control mb-3 mt-2" required>
-        <label for="name">Harga</label>
-        <input type="text" name="name" id="name" class="form-control mb-3 mt-2" required>
-        <label for="name">Destinasi</label>
-
-        <div class="card-wisata mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="/images/image5.jpg" class="img-fluid" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h6 5class="card-title">Candi Prambanan</h6>
-                        <small>Buka 06.30 - 17.00 WIB</small>
-                        <br>
-                        <small>Durasi terbaik 2 jam</small>
-                        <br>
-                        <span>Yogyakarta</span>
-                    </div>
-                </div>
+    <form action="{{ route('store_paket') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+        <label for="id_profile">ID Profile</label>
+        <input type="number" id="id_profile" name="id_profile" class="form-control mb-3 mt-2 @error('id_profile') is-invalid @enderror" value="{{ $profile['id'] }}" readonly>
+        <label for="nama_paket">Nama Paket</label>
+        <input type="text" id="nama_paket" name="nama_paket" class="form-control mb-3 mt-2 @error('nama_paket') is-invalid @enderror">
+        <!-- error message untuk nama -->
+        @error('nama_paket')
+            <div class="alert alert-danger mt-2">
+                {{ $message }}
             </div>
-        </div>
-        <div class="container align-items-center justify-content-center d-flex flex-column mb-3">
-            <a href="#">
-                <div class="rounded-circle rounded-circle profile-circle text-center justify-content-center align-items-center mx-1 m-auto pt-1" style="width: 36px; height: 36px;">
-                    +
-                </div>
-            </a>
-            <small><i class="text-gray">Tambah destinasi</i></small>
-        </div>
-        <a href="" style="text-decoration: none;">
-            <button class="blue-pil form-control">Save</button>
-        </a>
+        @enderror
+        <label for="foto">Foto</label>
+        <input type="file" id="foto" name="foto" class="form-control mb-3 mt-2 @error('foto') is-invalid @enderror">
+        <!-- error message untuk image -->
+        @error('foto')
+            <div class="alert alert-danger mt-2">
+                {{ $message }}
+            </div>
+        @enderror
+
+        <button type="submit" class="blue-pil form-control" style="text-decoration: none;" name="submit" id="create-paket">Save</button>
     </form>
 </div>
 @endsection

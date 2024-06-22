@@ -194,7 +194,7 @@ class JadwalDestinasiController extends Controller
             exit;
         }
         else {
-            $data = $searchResponse['data'][0];
+            $data = $searchResponse['data'];
 
             // Kirim data ke Laravel API
             $deleteResponse = Http::post('http://localhost:8000/api/delete-jadwal', $data);

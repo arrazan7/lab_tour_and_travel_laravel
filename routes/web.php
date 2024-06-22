@@ -22,13 +22,33 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/PaketDestinasi', [PublicPaketController::class, 'indexFilter'])->name('public_paket_filter');
     Route::get('/Dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('/AdminPaketDestinasi', [AdminPaketController::class, 'index'])->name('admin_paket_index');
-    Route::get('/AdminJadwalDestinasi', [AdminJadwalController::class, 'index'])->name('admin_jadwal_index');
+    Route::get('/AdminJadwalDestinasi/{id}', [AdminJadwalController::class, 'index'])->name('admin_jadwal_index');
     Route::get('/AdminDestinasi', [AdminDestinasiController::class, 'index'])->name('admin_destinasi_index');
     Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
 
 
     Route::get('/CreatePaket', [AdminPaketController::class, 'create'])->name('create_paket');
+    Route::post('/StorePaket', [AdminPaketController::class, 'store'])->name('store_paket');
+    Route::get('/EditPaket/{id}', [AdminPaketController::class, 'edit'])->name('edit_paket');
+    Route::post('/UpdatePaket/{foto}', [AdminPaketController::class, 'update'])->name('update_paket');
+    Route::get('/DeletePaket/{id}', [AdminPaketController::class, 'destroy'])->name('delete_paket');
+
+    Route::get('/CreateJadwal/{id}', [AdminJadwalController::class, 'create'])->name('create_jadwal');
+    Route::post('/StoreJadwal', [AdminJadwalController::class, 'store'])->name('store_jadwal');
+    Route::get('/EditIdDestinasi/{id}', [AdminJadwalController::class, 'editIdDestinasi'])->name('edit_id_destinasi');
+    Route::post('/UpdateIdDestinasi', [AdminJadwalController::class, 'updateIdDestinasi'])->name('update_id_destinasi');
+    Route::get('/EditJamMulai/{id}', [AdminJadwalController::class, 'editJamMulai'])->name('edit_jam_mulai');
+    Route::post('/UpdateJamMulai', [AdminJadwalController::class, 'updateJamMulai'])->name('update_jam_mulai');
+    Route::get('/EditJamSelesai/{id}', [AdminJadwalController::class, 'editJamSelesai'])->name('edit_jam_selesai');
+    Route::post('/UpdateJamSelesai', [AdminJadwalController::class, 'updateJamSelesai'])->name('update_jam_selesai');
+    Route::get('/EditWaktuTempuh/{id}', [AdminJadwalController::class, 'editWaktuTempuh'])->name('edit_waktu_tempuh');
+    Route::post('/UpdateWaktuTempuh', [AdminJadwalController::class, 'updateWaktuTempuh'])->name('update_waktu_tempuh');
+    Route::get('/EditJarakTempuh/{id}', [AdminJadwalController::class, 'editJarakTempuh'])->name('edit_jarak_tempuh');
+    Route::post('/UpdateJarakTempuh', [AdminJadwalController::class, 'updateJarakTempuh'])->name('update_jarak_tempuh');
+    Route::get('/DeleteJadwal/{id}', [AdminJadwalController::class, 'destroy'])->name('delete_jadwal');
+
     Route::get('/CreateDestinasi', [AdminDestinasiController::class, 'create'])->name('create_destinasi');
+
     Route::get('/penginapan', [AdminJadwalController::class, 'penginapan'])->name('penginapan');
     Route::get('/tambah-penginapan', [AdminJadwalController::class, 'tambahPenginapan'])->name('tambah-penginapan');
     Route::get('/transportasi', [AdminJadwalController::class, 'transportasi'])->name('transportasi');

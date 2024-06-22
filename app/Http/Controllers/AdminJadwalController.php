@@ -11,17 +11,70 @@ class AdminJadwalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(int $id)
     {
-        //
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+            $id_paketdestinasi = $id;
+
+            $responseJadwal = Http::get('http://127.0.0.1:8000/api/read-jadwal/' .$id. '');
+            $responsePaket = Http::get('http://127.0.0.1:8000/api/search-paket/' .$id. '');
+            $responseUser = Http::get('http://127.0.0.1:8000/api/show-user/' .$responsePaket['data']['id_profile']. '');
+
+            if (!$responseJadwal -> ok() || $responseJadwal === null) {
+
+                return view('admin.jadwalTest', compact('profile', 'id_paketdestinasi', 'responsePaket', 'responseUser'));
+                exit;
+            }
+            else {
+                $data = $responseJadwal['data'];
+                return view('admin.jadwalTest', compact('profile', 'data', 'id_paketdestinasi', 'responsePaket', 'responseUser'));
+            }
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(int $id)
     {
-        //
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+
+            $id_paketdestinasi = $id;
+
+            $responseDestinasi = Http::get('http://127.0.0.1:8000/api/list-destinasi');
+
+            // Set flash message for alert
+            session() -> flash('alert', 'Jadwal destinasi baru akan dibuat.');
+
+            // Return view with flash message available
+            return view('admin.tambah-jadwalTest', compact('profile', 'id_paketdestinasi', 'responseDestinasi'));
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
     }
 
     /**
@@ -29,7 +82,22 @@ class AdminJadwalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Ambil data input dari form
+        $data = $request -> all();
+
+        // Kirim data ke Laravel API
+        $response = Http::post('http://localhost:8000/api/store-jadwal', $data);
+
+        // Proses respons dari API
+        if ($response -> ok()) {
+            // Data berhasil dikirimkan
+            session() -> flash('alert', 'Jadwal destinasi berhasil dibuat.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
+            // Terjadi kesalahan saat mengirim data
+            session() -> flash('alert', 'Jadwal destinasi gagal dibuat. id paket = ' .$data['id_paketdestinasi']. '');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -48,6 +116,262 @@ class AdminJadwalController extends Controller
         //
     }
 
+    public function editIdDestinasi(string $id)
+    {
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+
+            $responseJadwal = Http::get('http://127.0.0.1:8000/api/search-jadwal/' .$id. '');
+            $responseDestinasi = Http::get('http://127.0.0.1:8000/api/list-destinasi');
+
+            // Return view with flash message available
+            if (!$responseJadwal -> ok() || $responseJadwal === null) {
+                echo "Kesalahan saat mengambil data dari API";
+                exit;
+            }
+            else {
+                $data = $responseJadwal['data'];
+                return view('admin.edit-idDestinasi', compact('profile', 'data', 'responseDestinasi'));
+            }
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
+    }
+
+    public function updateIdDestinasi(Request $request)
+    {
+        // Ambil data input dari form
+        $data = $request -> all();
+
+        // Kirim data ke Laravel API
+        $response = Http::post('http://localhost:8000/api/update-id-destinasi', $data);
+
+        // Proses respons dari API
+        if ($response -> ok()) {
+            // Data berhasil dikirimkan
+            session() -> flash('alert', 'Tujuan Destinasi berhasil diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+        } else {
+            // Terjadi kesalahan saat mengirim data
+            session() -> flash('alert', 'Tujuan Destinasi gagal diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+        }
+    }
+
+    public function editJamMulai(string $id)
+    {
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+
+            $response = Http::get('http://127.0.0.1:8000/api/search-jadwal/' .$id. '');
+
+            // Return view with flash message available
+            if (!$response -> ok() || $response === null) {
+                echo "Kesalahan saat mengambil data dari API";
+                exit;
+            }
+            else {
+                $data = $response['data'];
+                return view('admin.edit-jamMulai', compact('profile', 'data'));
+            }
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
+    }
+
+    public function updateJamMulai(Request $request)
+    {
+        // Ambil data input dari form
+        $data = $request -> all();
+
+        // Kirim data ke Laravel API
+        $response = Http::post('http://localhost:8000/api/update-jam-mulai', $data);
+
+        // Proses respons dari API
+        if ($response -> ok()) {
+            // Data berhasil dikirimkan
+            session() -> flash('alert', 'Jam Mulai berhasil diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+        } else {
+            // Terjadi kesalahan saat mengirim data
+            session() -> flash('alert', 'Jam Mulai gagal diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+        }
+    }
+
+    public function editJamSelesai(string $id)
+    {
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+
+            $response = Http::get('http://127.0.0.1:8000/api/search-jadwal/' .$id. '');
+
+            // Return view with flash message available
+            if (!$response -> ok() || $response === null) {
+                echo "Kesalahan saat mengambil data dari API";
+                exit;
+            }
+            else {
+                $data = $response['data'];
+                return view('admin.edit-jamSelesai', compact('profile', 'data'));
+            }
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
+    }
+
+    public function updateJamSelesai(Request $request)
+    {
+        // Ambil data input dari form
+        $data = $request -> all();
+
+        // Kirim data ke Laravel API
+        $response = Http::post('http://localhost:8000/api/update-jam-selesai', $data);
+
+        // Proses respons dari API
+        if ($response -> ok()) {
+            // Data berhasil dikirimkan
+            session() -> flash('alert', 'Jam Selesai berhasil diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+        } else {
+            // Terjadi kesalahan saat mengirim data
+            session() -> flash('alert', 'Jam Selesai gagal diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+        }
+    }
+
+    public function editWaktuTempuh(string $id)
+    {
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+
+            $response = Http::get('http://127.0.0.1:8000/api/search-jadwal/' .$id. '');
+
+            // Return view with flash message available
+            if (!$response -> ok() || $response === null) {
+                echo "Kesalahan saat mengambil data dari API";
+                exit;
+            }
+            else {
+                $data = $response['data'];
+                return view('admin.edit-waktuTempuh', compact('profile', 'data'));
+            }
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
+    }
+
+    public function updateWaktuTempuh(Request $request)
+    {
+        // Ambil data input dari form
+        $data = $request -> all();
+
+        // Kirim data ke Laravel API
+        $response = Http::post('http://localhost:8000/api/update-waktu-tempuh', $data);
+
+        // Proses respons dari API
+        if ($response -> ok()) {
+            // Data berhasil dikirimkan
+            session() -> flash('alert', 'Waktu Tempuh berhasil diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+        } else {
+            // Terjadi kesalahan saat mengirim data
+            session() -> flash('alert', 'Waktu Tempuh gagal diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+        }
+    }
+
+    public function editJarakTempuh(string $id)
+    {
+        $accessToken = session() -> get('access_token'); // Retrieve token from session
+
+        $responseProfile = Http::withHeaders([
+            'Authorization' => "Bearer {$accessToken}",
+        ]) -> get('http://localhost:8000/api/profile');
+
+        if ($responseProfile -> ok()) {
+            // Berhasil mendapat data profile
+            $profile = $responseProfile -> json()['data'];
+
+            $response = Http::get('http://127.0.0.1:8000/api/search-jadwal/' .$id. '');
+
+            // Return view with flash message available
+            if (!$response -> ok() || $response === null) {
+                echo "Kesalahan saat mengambil data dari API";
+                exit;
+            }
+            else {
+                $data = $response['data'];
+                return view('admin.edit-jarakTempuh', compact('profile', 'data'));
+            }
+        }
+        else {
+            // Handle potential token-related errors (e.g., expired token)
+            session() -> forget('access_token'); // Clear token on error
+            return redirect() -> route('login_akun') -> with('error', 'Your session has expired. Please log in again.');
+        }
+    }
+
+    public function updateJarakTempuh(Request $request)
+    {
+        // Ambil data input dari form
+        $data = $request -> all();
+
+        // Kirim data ke Laravel API
+        $response = Http::post('http://localhost:8000/api/update-jarak-tempuh', $data);
+
+        // Proses respons dari API
+        if ($response -> ok()) {
+            // Data berhasil dikirimkan
+            session() -> flash('alert', 'Jarak Tempuh berhasil diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Berhasil Diperbarui!']);
+        } else {
+            // Terjadi kesalahan saat mengirim data
+            session() -> flash('alert', 'Jarak Tempuh gagal diperbarui.');
+            return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Gagal Diperbarui!']);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -59,9 +383,32 @@ class AdminJadwalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $searchResponse = Http::get('http://127.0.0.1:8000/api/search-jadwal/' .$id. '');
+
+        // Return view with flash message available
+        if (!$searchResponse -> ok() || $searchResponse === null) {
+            echo "Kesalahan saat mengambil data dari API";
+            exit;
+        }
+        else {
+            $data = $searchResponse['data'];
+
+            // Kirim data ke Laravel API
+            $deleteResponse = Http::post('http://localhost:8000/api/delete-jadwal', $data);
+
+            // Proses respons dari API
+            if ($deleteResponse -> ok()) {
+                // Data jadwal berhasil dihapus
+                session() -> flash('alert', 'Jadwal berhasil dihapus.');
+                return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['success' => 'Data Jadwal Berhasil Dihapus!']);
+            } else {
+                // Terjadi kesalahan saat menghapus data jadwal
+                session() -> flash('alert', 'Jadwal gagal dihapus.');
+                return redirect() -> route('admin_jadwal_index', ['id' => $data['id_paketdestinasi']]) -> with(['failed' => 'Data Jadwal Gagal Dihapus!']);
+            }
+        }
     }
 
 

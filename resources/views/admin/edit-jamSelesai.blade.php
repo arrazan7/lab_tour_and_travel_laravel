@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Jam Selesai</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
+<link rel="stylesheet" href="/css/admin.css">
+@extends('layouts.dashboard-nav')
+
+@section('content')
     <div class="container mt-5">
-        <h2>Formulir Update Jam Selesai</h2>
-        <form action="{{ route('update_jam_selesai_test') }}" method="POST" enctype="multipart/form-data">
+        <h2>Edit Jam Selesai</h2>
+        <form action="{{ route('update_jam_selesai') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="mb-3 mt-3">
                 <label for="id_paket">ID Paket Destinasi:</label>
@@ -25,10 +20,9 @@
             </div>
             <div class="mb-3 mt-3">
                 <label for="jam">Jam Selesai:</label>
-                <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d):(?:00)" value="{{ $data['jam_selesai'] }}" class="form-control" id="jam" placeholder="HH:MM" name="jam_selesai">
+                <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d)" value="{{ substr($data['jam_selesai'], 0, 5) }}" class="form-control" id="jam" placeholder="HH:MM" name="jam_selesai">
             </div>
-            <button type="submit" class="btn btn-primary mb-3" name="submit" value="jam_selesai">Submit</button>
+            <button type="submit" class="btn btn-primary mb-3" name="submit" id="edit-jam-selesai">Save</button>
         </form>
     </div>
-</body>
-</html>
+@endsection

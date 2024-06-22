@@ -3,7 +3,6 @@
 
 @section('content')
 <div class="container form-container">
-    <h4>Foto:</h4>
     <img src="{{ asset('storage/paket_destinasi/'.$responsePaket['data']['foto']) }}" class="card-img" alt="Your Image">
     <h4>Dibuat oleh:</h4>
     <p>{{ $responseUser['data']['full_name'] }}</p>

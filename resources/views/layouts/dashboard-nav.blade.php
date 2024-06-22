@@ -23,7 +23,7 @@
                 <img src="{{ asset('images/logo-white.png') }}" style="width: 120px; height: 100%;">
             </a>
             <ul class="nav nav-pills flex-column mt-3 mb-auto">
-                <li class="py-2 px-4 {{ request() -> routeIs('admin_paket_index') ? 'menu-active' : (request() -> routeIs('create_paket') ? 'menu-active' : (request() -> routeIs('admin_jadwal_index') ? 'menu-active' : 'menu')) }}">
+                <li class="py-2 px-4 {{ request() -> routeIs('admin_paket_index') ? 'menu-active' : (request() -> routeIs('create_paket') ? 'menu-active' : (request() -> routeIs('edit_paket') ? 'menu-active' : (request() -> routeIs('admin_jadwal_index') ? 'menu-active' : (request() -> routeIs('create_jadwal') ? 'menu-active' : (request() -> routeIs('edit_id_destinasi') ? 'menu-active' : (request() -> routeIs('edit_jam_mulai') ? 'menu-active' : (request() -> routeIs('edit_jam_selesai') ? 'menu-active' : (request() -> routeIs('edit_waktu_tempuh') ? 'menu-active' : (request() -> routeIs('edit_jarak_tempuh') ? 'menu-active' : 'menu'))))))))) }}">
                     <a href="{{ route('admin_paket_index') }}" class="nav-link text-white" aria-current="page">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-map mx-2" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
@@ -31,7 +31,7 @@
                     Paket
                     </a>
                 </li>
-                <li class="py-2 px-4 {{ request() -> routeIs('admin_destinasi_index') ? 'menu-active' : (request() -> routeIs('create_destinasi') ? 'menu-active' : 'menu') }}">
+                <li class="py-2 px-4 {{ request() -> routeIs('admin_destinasi_index') ? 'menu-active' : (request() -> routeIs('create_destinasi') ? 'menu-active' : (request() -> routeIs('admin_destinasi_show') ? 'menu-active' : (request() -> routeIs('edit_destinasi') ? 'menu-active' : 'menu'))) }}">
                     <a href="{{ route('admin_destinasi_index') }}" class="nav-link text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt mx-2" viewBox="0 0 16 16">
                         <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>

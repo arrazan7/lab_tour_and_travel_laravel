@@ -24,6 +24,7 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/AdminPaketDestinasi', [AdminPaketController::class, 'index'])->name('admin_paket_index');
     Route::get('/AdminJadwalDestinasi/{id}', [AdminJadwalController::class, 'index'])->name('admin_jadwal_index');
     Route::get('/AdminDestinasi', [AdminDestinasiController::class, 'index'])->name('admin_destinasi_index');
+    Route::get('/AdminDestinasiShow/{id}', [AdminDestinasiController::class, 'show'])->name('admin_destinasi_show');
     Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
 
 
@@ -48,6 +49,10 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/DeleteJadwal/{id}', [AdminJadwalController::class, 'destroy'])->name('delete_jadwal');
 
     Route::get('/CreateDestinasi', [AdminDestinasiController::class, 'create'])->name('create_destinasi');
+    Route::post('/StoreDestinasi', [AdminDestinasiController::class, 'store'])->name('store_destinasi');
+    Route::get('/EditDestinasi/{id}', [AdminDestinasiController::class, 'edit'])->name('edit_destinasi');
+    Route::post('/UpdateDestinasi/{foto}', [AdminDestinasiController::class, 'update'])->name('update_destinasi');
+    Route::get('/DeleteDestinasi/{id}', [AdminDestinasiController::class, 'destroy'])->name('delete_destinasi');
 
     Route::get('/penginapan', [AdminJadwalController::class, 'penginapan'])->name('penginapan');
     Route::get('/tambah-penginapan', [AdminJadwalController::class, 'tambahPenginapan'])->name('tambah-penginapan');

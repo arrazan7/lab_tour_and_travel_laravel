@@ -20,22 +20,18 @@
     <div class="pilih-paket pt-5">
         <div class="mb-2 pt-5">
             <div class="container mb-2">
-                <div class="step-container">
-                    <div class="{{ request()->routeIs('pilih-paket') ? 'step active' : (request()->routeIs('data-diri', 'konfirmasi', 'bukti-pembayaran') ? 'step active' : 'step') }}">
+                <div class="step-container-custom">
+                    <div class="{{ request()->routeIs('custom-pilih-tiket') ? 'step active' : (request()->routeIs('custom-data-diri', 'custom-konfirmasi') ? 'step active' : 'step') }}">
                         <div class="step-circle"></div>
                         <div class="step-text">Pilih Tiket</div>
                     </div>
-                    <div class="{{ request()->routeIs('data-diri') ? 'step active' : (request()->routeIs('konfirmasi', 'bukti-pembayaran') ? 'step active' : 'step') }}">
+                    <div class="{{ request()->routeIs('custom-data-diri') ? 'step active' : (request()->routeIs('custom-konfirmasi') ? 'step active' : 'step') }}">
                         <div class="step-circle"></div>
                         <div class="step-text">Data Diri</div>
                     </div>
-                    <div class="{{ request()->routeIs('konfirmasi') ? 'step active' : (request()->routeIs('bukti-pembayaran') ? 'step active' : 'step') }}">
+                    <div class="{{ request()->routeIs('custom-konfirmasi') ? 'step active' : 'step' }}">
                         <div class="step-circle"></div>
                         <div class="step-text">Konfirmasi</div>
-                    </div>
-                    <div class="{{ request()->routeIs('bukti-pembayaran') ? 'step active' : 'step' }}">
-                        <div class="step-circle"></div>
-                        <div class="step-text">Bukti Pembayaran</div>
                     </div>
                 </div>
             </div>

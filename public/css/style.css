@@ -47,12 +47,12 @@ section {
     max-height: 250px;
     overflow: auto;
 }
-  
+
 .dropdown-menu label {
     display: block;
     padding: 8px 12px;
 }
-  
+
 .dropdown-menu label:hover {
     background-color: #f1f1f1;
 }
@@ -138,7 +138,7 @@ a{
 .show-more {
     text-align: right;
     font-weight: bolder;
-}       
+}
 
 .blue-pil {
     background-color: #3BB7FF;
@@ -161,8 +161,13 @@ a{
     border-bottom: 2px solid #919191;
 }
 
-#price h4 {
+#price #wni {
     color: #29BF12;
+    font-weight: bold;
+}
+
+#price #wna {
+    color: #121bbf;
     font-weight: bold;
 }
 

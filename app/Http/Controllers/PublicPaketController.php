@@ -196,11 +196,7 @@ class PublicPaketController extends Controller
     }
 
 
-    // Detail Jadwal
-    public function detailPaket()
-    {
-        return view('public.jadwal');
-    }
+
 
     // Custom
     public function customPaket()

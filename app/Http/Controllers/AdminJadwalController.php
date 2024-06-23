@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\File;
 
 class AdminJadwalController extends Controller
 {
@@ -30,12 +29,12 @@ class AdminJadwalController extends Controller
 
             if (!$responseJadwal -> ok() || $responseJadwal === null) {
 
-                return view('admin.jadwalTest', compact('profile', 'id_paketdestinasi', 'responsePaket', 'responseUser'));
+                return view('admin.jadwal', compact('profile', 'id_paketdestinasi', 'responsePaket', 'responseUser'));
                 exit;
             }
             else {
                 $data = $responseJadwal['data'];
-                return view('admin.jadwalTest', compact('profile', 'data', 'id_paketdestinasi', 'responsePaket', 'responseUser'));
+                return view('admin.jadwal', compact('profile', 'data', 'id_paketdestinasi', 'responsePaket', 'responseUser'));
             }
         }
         else {
@@ -68,7 +67,7 @@ class AdminJadwalController extends Controller
             session() -> flash('alert', 'Jadwal destinasi baru akan dibuat.');
 
             // Return view with flash message available
-            return view('admin.tambah-jadwalTest', compact('profile', 'id_paketdestinasi', 'responseDestinasi'));
+            return view('admin.tambah-jadwal', compact('profile', 'id_paketdestinasi', 'responseDestinasi'));
         }
         else {
             // Handle potential token-related errors (e.g., expired token)

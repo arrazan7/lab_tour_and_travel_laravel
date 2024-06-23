@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Jangan lupa menyertakan ini
 use App\Http\Controllers\PublicPaketController; // Jangan lupa menyertakan ini
+use App\Http\Controllers\PublicJadwalController; // Jangan lupa menyertakan ini
 use App\Http\Controllers\AdminPaketController; // Jangan lupa menyertakan ini
 use App\Http\Controllers\AdminJadwalController; // Jangan lupa menyertakan ini
 use App\Http\Controllers\AdminDestinasiController; // Jangan lupa menyertakan ini
@@ -20,6 +21,7 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/Home', [PublicPaketController::class, 'index'])->name('public_paket_index');
     Route::post('/Filter', [PublicPaketController::class, 'filter'])->name('public_filter');
     Route::get('/PaketDestinasi', [PublicPaketController::class, 'indexFilter'])->name('public_paket_filter');
+    Route::get('/JadwalDestinasi/{id}', [PublicJadwalController::class, 'index'])->name('public_jadwal_index');
     Route::get('/Dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('/AdminPaketDestinasi', [AdminPaketController::class, 'index'])->name('admin_paket_index');
     Route::get('/AdminJadwalDestinasi/{id}', [AdminJadwalController::class, 'index'])->name('admin_jadwal_index');
@@ -27,7 +29,6 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/AdminDestinasiShow/{id}', [AdminDestinasiController::class, 'show'])->name('admin_destinasi_show');
     Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
 
-    Route::get('/detail-paket', [PublicPaketController::class, 'detailPaket'])->name('public_jadwal_index');
 
     // pesan paket
     Route::get('/pilih-paket', [PublicPaketController::class, 'pilihPaket'])->name('pilih-paket');

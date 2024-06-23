@@ -197,7 +197,7 @@
                                         <div class="overlay-text">
                                             <p class="paket">{{ $data[$i]['nama_paket'] }}</p>
                                             <span class="badge price">Rp<?php echo number_format($data[$i]['harga_wni'], 0, ',', '.'); ?></span>
-                                            <p><a href="{{ route('public_jadwal_index') }}">Lihat detail ></a></p>
+                                            <p><a href="{{ route('public_jadwal_index', ['id' => $data[$i]['id_paketdestinasi']]) }}" target="blank">Lihat detail ></a></p>
                                         </div>
                                     </div>
                                 </div>

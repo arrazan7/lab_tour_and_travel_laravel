@@ -60,16 +60,8 @@
                 <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d)" class="form-control" id="jam_selesai" placeholder="HH:MM" name="jam_selesai">
             </div>
             <div class="mb-3">
-                <label for="zona_mulai">Zona Waktu Mulai:</label><br>
-                <select id="zona_mulai" name="zona_mulai">
-                    <option value="WIB" selected>WIB</option>
-                    <option value="WITA">WITA</option>
-                    <option value="WIT">WIT</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="zona_selesai">Zona Waktu Selesai:</label><br>
-                <select id="zona_selesai" name="zona_selesai">
+                <label for="jam_lokasi">Jam Lokasi:</label><br>
+                <select id="jam_lokasi" name="jam_lokasi">
                     <option value="WIB" selected>WIB</option>
                     <option value="WITA">WITA</option>
                     <option value="WIT">WIT</option>

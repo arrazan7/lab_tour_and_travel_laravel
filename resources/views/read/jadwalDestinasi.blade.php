@@ -40,8 +40,7 @@
                         <th>id_destinasi</th>
                         <th>jam_mulai</th>
                         <th>jam_selesai</th>
-                        <th>zona_mulai</th>
-                        <th>zona_selesai</th>
+                        <th>jam_lokasi</th>
                         <th>catatan</th>
                         <th>Hapus</th>
                     </tr>
@@ -74,8 +73,7 @@
                             {{ $json['jam_selesai'] }}
                             </a>
                         </td>
-                        <td>{{ $json['zona_mulai'] }}</td>
-                        <td>{{ $json['zona_selesai'] }}</td>
+                        <td>{{ $json['jam_lokasi'] }}</td>
                         <td>{{ $json['catatan'] }}</td>
                         <td>
                             <form action="{{ route('delete_jadwal_test', ['id' => $json['id_jadwaldestinasi']]) }}" method="GET" title="Hapus Jadwal" data-toggle="tooltip">

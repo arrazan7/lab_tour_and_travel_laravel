@@ -24,7 +24,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#paket">Paket</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#custom">Custom</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('customPaket') }}">Custom</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('waiting') }}">Profile</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-primary" href="{{ route('logout_akun') }}" id="logout-button">Logout</a></li>
                     </ul>
                 </div>
@@ -196,7 +197,7 @@
                                         <div class="overlay-text">
                                             <p class="paket">{{ $data[$i]['nama_paket'] }}</p>
                                             <span class="badge price">Rp<?php echo number_format($data[$i]['harga_wni'], 0, ',', '.'); ?></span>
-                                            <p><a href="#">Lihat detail ></a></p>
+                                            <p><a href="{{ route('public_jadwal_index') }}">Lihat detail ></a></p>
                                         </div>
                                     </div>
                                 </div>

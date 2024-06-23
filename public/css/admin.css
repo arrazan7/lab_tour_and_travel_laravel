@@ -224,7 +224,7 @@ a{
 }
 
 .detail-paket-img {
-  height: 65%;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
@@ -235,6 +235,6 @@ a{
 
 .detail-paket-container{
   padding: 0% 5%;
-  max-height: 90vh;
+  max-height: 80vh;
   overflow: auto;
 }

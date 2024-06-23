@@ -182,7 +182,7 @@
             @enderror
 
             <label for="deskripsi">Deskripsi</label>
-            <input type="text" id="deskripsi" name="deskripsi" value="{{ $data['deskripsi'] }}" class="form-control mb-3 mt-2 @error('deskripsi') is-invalid @enderror">
+            <textarea type="text" id="deskripsi" name="deskripsi" value="{{ $data['deskripsi'] }}" class="form-control mb-3 mt-2 @error('deskripsi') is-invalid @enderror">{{ $data['deskripsi'] }}</textarea>
             <!-- error message untuk deskripsi -->
             @error('deskripsi')
                 <div class="alert alert-danger mt-2">

@@ -27,6 +27,14 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/AdminDestinasiShow/{id}', [AdminDestinasiController::class, 'show'])->name('admin_destinasi_show');
     Route::get('/Logout', [AuthController::class, 'logout'])->name('logout_akun');
 
+    Route::get('/detail-paket', [PublicPaketController::class, 'detailPaket'])->name('public_jadwal_index');
+
+    // pesan paket
+    Route::get('/pilih-paket', [PublicPaketController::class, 'pilihPaket'])->name('pilih-paket');
+    Route::get('/data-diri', [PublicPaketController::class, 'dataDiri'])->name('data-diri');
+    Route::get('/konfirmasi', [PublicPaketController::class, 'konfirmasi'])->name('konfirmasi');
+    Route::get('/bukti-pembayaran', [PublicPaketController::class, 'buktiPembayaran'])->name('bukti-pembayaran');
+
 
     Route::get('/CreatePaket', [AdminPaketController::class, 'create'])->name('create_paket');
     Route::post('/StorePaket', [AdminPaketController::class, 'store'])->name('store_paket');
@@ -60,6 +68,19 @@ Route::middleware([TokenMiddleware::class]) -> group(function () {
     Route::get('/tambah-transportasi', [AdminJadwalController::class, 'tambahTransportasi'])->name('tambah-transportasi');
     Route::get('/custom', [AdminJadwalController::class, 'custom'])->name('custom');
     Route::get('/booking', [AdminJadwalController::class, 'booking'])->name('booking');
+
+    // custom
+    Route::get('/custom-paket', [PublicPaketController::class, 'customPaket'])->name('customPaket');
+    Route::get('/custom-pilih-tiket', [PublicPaketController::class, 'customPilihTiket'])->name('custom-pilih-tiket');
+    Route::get('/custom-data-diri', [PublicPaketController::class, 'customDataDiri'])->name('custom-data-diri');
+    Route::get('/custom-konfirmasi', [PublicPaketController::class, 'customKonfirmasi'])->name('custom-konfirmasi');
+
+    // user profile
+    Route::get('/waiting', [PublicPaketController::class, 'waiting'])->name('waiting');
+    Route::get('/accepted', [PublicPaketController::class, 'accepted'])->name('accepted');
+    Route::get('/rejected', [PublicPaketController::class, 'rejected'])->name('rejected');
+    Route::get('/paid', [PublicPaketController::class, 'paid'])->name('paid');
+    Route::get('/done', [PublicPaketController::class, 'done'])->name('done');
 });
 
 Route::middleware([AlredyLoginMiddleware::class]) -> group(function () {

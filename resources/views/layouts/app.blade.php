@@ -14,7 +14,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="{{ route('public_paket_filter') }}">Paket</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#custom">Custom</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('customPaket') }}">Custom</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('waiting') }}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-primary" href="{{ route('logout_akun') }}">Logout</a></li>
                 </ul>
             </div>

@@ -194,4 +194,69 @@ class PublicPaketController extends Controller
     {
         //
     }
+
+
+    // Detail Jadwal
+    public function detailPaket()
+    {
+        return view('public.jadwal');
+    }
+
+    // Custom
+    public function customPaket()
+    {
+        return view('pesan-custom.custom');
+    }
+    public function customPilihTiket()
+    {
+        return view('pesan-custom.pilih-tiket');
+    }
+    public function customDataDiri()
+    {
+        return view('pesan-custom.data-diri');
+    }
+    public function customKonfirmasi()
+    {
+        return view('pesan-custom.konfirmasi');
+    }
+
+    // Pemesanan
+    public function pilihPaket()
+    {
+        return view('pesan-paket.pilih-paket');
+    }
+    public function dataDiri()
+    {
+        return view('pesan-paket.data-diri');
+    }
+    public function konfirmasi()
+    {
+        return view('pesan-paket.konfirmasi');
+    }
+    public function buktiPembayaran()
+    {
+        return view('pesan-paket.bukti-pembayaran');
+    }
+
+    // User Profile
+    public function waiting()
+    {
+        return view('user.menunggu');
+    }
+    public function accepted()
+    {
+        return view('user.disetujui');
+    }
+    public function rejected()
+    {
+        return view('user.ditolak');
+    }
+    public function paid()
+    {
+        return view('user.dibayar');
+    }
+    public function done()
+    {
+        return view('user.selesai');
+    }
 }

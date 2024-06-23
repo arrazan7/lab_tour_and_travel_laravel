@@ -2,7 +2,7 @@
 @extends('layouts.dashboard-nav')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5" style="overflow: auto; max-height: 80vh;">
         <h2>Formulir Jadwal Destinasi Baru</h2>
         <form action="{{ route('store_jadwal') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -77,7 +77,7 @@
             </div>
             <div class="mb-3">
                 <label for="ctt">Catatan Jadwal:</label>
-                <input type="text" class="form-control" id="ctt" placeholder="Catatan" name="catatan">
+                <textarea type="text" class="form-control" id="ctt" placeholder="Catatan" name="catatan"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary mb-3" name="submit" id="create-jadwal">Create</button>

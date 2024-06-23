@@ -1,7 +1,7 @@
 @extends('layouts.dashboard-nav')
 
 @section('content')
-    <div class="container form-container">
+    <div class="container form-container" style="overflow: auto; max-height: 80vh;">
         <h6 class="text-center mb-4">Tambah Destinasi</h6>
         <form action="{{ route('store_destinasi') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -178,7 +178,7 @@
             @enderror
 
             <label for="deskripsi">Deskripsi</label>
-            <input type="text" id="deskripsi" name="deskripsi" value="{{ old('deskripsi') }}" class="form-control mb-3 mt-2 @error('deskripsi') is-invalid @enderror">
+            <textarea type="text" id="deskripsi" name="deskripsi" value="{{ old('deskripsi') }}" class="form-control mb-3 mt-2 @error('deskripsi') is-invalid @enderror"></textarea>
             <!-- error message untuk deskripsi -->
             @error('deskripsi')
                 <div class="alert alert-danger mt-2">

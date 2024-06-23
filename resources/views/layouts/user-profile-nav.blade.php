@@ -5,16 +5,16 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink navbar-custom" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="http://127.0.0.1:8000/images/logo.png" alt="..."></a>
+            <a class="navbar-brand" href="#page-top"><img src="images/logo.png" alt="..."></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('paket') }}">Paket</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#custom">Custom</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-primary" href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('public_paket_index') }}">Paket</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('customPaket') }}">Custom</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary" href="{{ route('logout_akun') }}">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 </li>
             </ul>
         </div>
-        
+
         <div class="container dashboard-content mt-4 mx-5">
             <div class="layout-container d-flex flex-column">
                 <table class="admin-table mt-3">

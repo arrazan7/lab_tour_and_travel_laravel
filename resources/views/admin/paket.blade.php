@@ -7,7 +7,7 @@
     </button>
 </a>
 
-<div class="layout-container mt-4">
+<div class="layout-container mt-4" style="overflow: auto; max-height: 80vh;">
     <div class="row row-custom justify-content-start">
         @forelse ($data as $json)
         <div class="col col-custom d-flex x-0">

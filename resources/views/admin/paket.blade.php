@@ -13,7 +13,7 @@
         <div class="col col-custom d-flex x-0">
             <div class="card" style="width: 16rem;">
                 <div class="card-body">
-                    <img src="{{ asset('storage/paket_destinasi/'.$json['foto']) }}" class="card-img" alt="Your Image">
+                    <img src="http://127.0.0.1:8000/storage/paket_destinasi/{{ $json['foto'] }}" class="card-img" alt="Your Image">
                     <div class="overlay-container">
                         <div class="btn-container d-flex justify-content-end mt-3 mx-2">
                             <a href="{{ route('edit_paket', ['id' => $json['id_paketdestinasi']]) }}">

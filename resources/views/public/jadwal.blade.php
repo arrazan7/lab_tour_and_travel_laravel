@@ -7,7 +7,7 @@
 <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
 @section('content')
-    <img src="{{ asset('storage/paket_destinasi/'.$responsePaket['data']['foto']) }}" class="img-detail">
+    <img src="http://127.0.0.1:8000/storage/paket_destinasi/{{ $responsePaket['data']['foto'] }}" class="img-detail">
     <section id="price">
         <div class="col-me-auto mt-5">
             <small>Harga WNI mulai dari</small>
@@ -49,7 +49,7 @@
                         <div class="card card-wisata mb-0">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('storage/destinasi/'.$json['foto']) }}" class="img-fluid" alt="...">
+                                    <img src="http://127.0.0.1:8000/storage/destinasi/{{ $json['foto'] }}" class="img-fluid" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -94,7 +94,7 @@
                         <div class="card card-wisata mb-0">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('storage/destinasi/'.$json['foto']) }}" class="img-fluid" alt="...">
+                                    <img src="http://127.0.0.1:8000/storage/destinasi/{{ $json['foto'] }}" class="img-fluid" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

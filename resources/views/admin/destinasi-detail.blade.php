@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container form-container">
-        <img src="{{ asset('storage/destinasi/'.$data['foto']) }}" class="card-img" alt="Your Image">
+        <img src="http://127.0.0.1:8000/storage/destinasi/{{ $data['foto'] }}" class="card-img" alt="Your Image">
         <h4>ID Destinasi</h4>
         <p>{{ $data['id_destinasi'] }}</p>
         <h4>Nama Destinasi:</h4>

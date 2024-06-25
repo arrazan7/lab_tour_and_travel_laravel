@@ -4,7 +4,7 @@
 @section('content')
     <div class="container form-container">
         <h6 class="text-center mb-4">Tambah Destinasi</h6>
-        <form action="{{ route('update_destinasi', ['foto' => $data['foto']]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('update_destinasi') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <label for="id_destinasi">ID Destinasi:</label>
             <input type="number" class="form-control mb-3 mt-2" id="id_destinasi" name="id_destinasi" value="{{ $data['id_destinasi'] }}" readonly>

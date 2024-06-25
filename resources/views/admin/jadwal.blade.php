@@ -7,7 +7,7 @@
     <div class="container detail-paket-container">
         <h6 class="text-center mb-4">Detail Paket</h6>
         <div class="container">
-            <img src="{{ asset('storage/paket_destinasi/'.$responsePaket['data']['foto']) }}" alt="" class="detail-paket-img">
+            <img src="http://127.0.0.1:8000/storage/paket_destinasi/{{ $responsePaket['data']['foto'] }}" alt="" class="detail-paket-img">
         </div>
         <div class="container mt-3">
             <table class="summary">

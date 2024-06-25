@@ -136,7 +136,7 @@
             <div class="col col-custom d-flex">
                 <div class="card" style="width: 16rem;">
                     <div class="card-body">
-                        <img src="{{ asset('storage/paket_destinasi/'.$json['foto']) }}" class="card-pict" alt="Your Image">
+                        <img src="http://127.0.0.1:8000/storage/paket_destinasi/{{ $json['foto'] }}" class="card-pict" alt="Your Image">
                         <div class="overlay-container">
                             <div class="overlay-text">
                                 <p class="paket">{{ $json['nama_paket'] }}</p>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\File;
 
 class AdminPaketController extends Controller
 {
@@ -80,26 +79,34 @@ class AdminPaketController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,jpg,png|max:5000'
         ]);
 
-        //upload image
-        if ($request -> hasFile('foto')) {
-            $extension = $request -> file('foto') -> getClientOriginalExtension();
-            $basename = uniqid() . time();
-
-            $namaFileFoto = "{$basename}.{$extension}";
-            $pathFoto = $request -> file('foto') -> storeAs('public/paket_destinasi', $namaFileFoto);
-        } else {
-            $namaFileFoto = '';
-        }
-
         // Ambil data input dari form
         $data = [
             'id_profile' => $request -> input('id_profile'),
-            'nama_paket' => $request -> input('nama_paket'),
-            'foto' => $namaFileFoto
+            'nama_paket' => $request -> input('nama_paket')
         ];
 
+        // Siapkan permintaan multipart
+        $multipart = [];
+
+        // Tambahkan data ke multipart
+        foreach ($data as $key => $value) {
+            $multipart[] = [
+                'name' => $key,
+                'contents' => $value
+            ];
+        }
+
+        // Tambahkan file ke multipart jika ada
+        if ($request -> hasFile('foto')) {
+            $multipart[] = [
+                'name' => 'foto',
+                'contents' => fopen($request->file('foto')->getRealPath(), 'r'),
+                'filename' => $request->file('foto')->getClientOriginalName()
+            ];
+        }
+
         // Kirim data ke Laravel API
-        $response = Http::post('http://localhost:8000/api/store-paket', $data);
+        $response = Http::asMultipart() -> post('http://localhost:8000/api/store-paket', $multipart);
 
         // Proses respons dari API
         if ($response -> ok()) {
@@ -166,45 +173,51 @@ class AdminPaketController extends Controller
      */
     public function update(Request $request, string $foto)
     {
-        //validate form
+        // Validate form
         $request->validate([
             'nama_paket' => 'required|string',
             'foto' => 'nullable|image|mimes:jpeg,jpg,png|max:5000'
         ]);
 
-        // memberi nama image
-        if ($request -> hasFile('foto')) {
-            //delete old image
-            File::delete(public_path() ."/storage/paket_destinasi/".$foto);
-
-            $extension = $request -> file('foto') -> getClientOriginalExtension();
-            $basename = uniqid() . time();
-
-            $namaFileFoto = "{$basename}.{$extension}";
-            $pathFoto = $request -> file('foto') -> storeAs('public/paket_destinasi', $namaFileFoto);
-        } else {
-            $namaFileFoto = "";
-        };
-
         // Ambil data input dari form
         $data = [
-            'id_paketdestinasi' => $request -> input('id_paketdestinasi'),
-            'nama_paket' => $request -> input('nama_paket'),
-            'foto' => $namaFileFoto
+            'id_paketdestinasi' => $request->input('id_paketdestinasi'),
+            'nama_paket' => $request->input('nama_paket'),
+            'old_foto' => $foto
         ];
 
+        // Siapkan permintaan multipart
+        $multipart = [];
+
+        // Tambahkan data ke multipart
+        foreach ($data as $key => $value) {
+            $multipart[] = [
+                'name' => $key,
+                'contents' => $value
+            ];
+        }
+
+        // Tambahkan file ke multipart jika ada
+        if ($request -> hasFile('foto')) {
+            $multipart[] = [
+                'name' => 'foto',
+                'contents' => fopen($request->file('foto')->getRealPath(), 'r'),
+                'filename' => $request->file('foto')->getClientOriginalName()
+            ];
+        }
+
         // Kirim data ke Laravel API
-        $response = Http::post('http://localhost:8000/api/update-paket', $data);
+        $response = Http::asMultipart() -> post('http://localhost:8000/api/update-paket', $multipart);
 
         // Proses respons dari API
-        if ($response -> ok()) {
+        if ($response->ok()) {
             // Data berhasil dikirimkan
-            session() -> flash('alert', 'Paket Destinasi berhasil diperbarui.');
-            return redirect() -> route('admin_paket_index') -> with(['success' => 'Data Berhasil Disimpan!']);
+            session()->flash('alert', 'Paket Destinasi berhasil diperbarui.');
+            return redirect()->route('admin_paket_index')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             // Terjadi kesalahan saat mengirim data
-            session() -> flash('alert', 'Paket Destinasi gagal diperbarui.');
-            return redirect() -> route('admin_paket_index') -> with(['failed' => 'Data Gagal Disimpan!']);
+            session()->flash('alert', 'Paket Destinasi gagal diperbarui.');
+            return redirect()->route('admin_paket_index')->with(['failed' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -223,7 +236,8 @@ class AdminPaketController extends Controller
         else {
             $data = [
                 'id_paketdestinasi' => $searchResponse['data']['id_paketdestinasi'],
-                'durasi_wisata' => $searchResponse['data']['durasi_wisata']
+                'durasi_wisata' => $searchResponse['data']['durasi_wisata'],
+                'old_foto' => $searchResponse['data']['foto']
             ];
 
             // Kirim data ke Laravel API
@@ -231,12 +245,6 @@ class AdminPaketController extends Controller
 
             // Proses respons dari API
             if ($deleteResponse -> ok()) {
-                // delete old image
-                if (!empty($searchResponse['data']['foto'])) {
-                    //delete old image
-                    File::delete(public_path() ."/storage/paket_destinasi/".$searchResponse['data']['foto']);
-                }
-
                 // Data berhasil dikirimkan
                 session() -> flash('alert', 'Paket Destinasi berhasil dihapus.');
                 return redirect() -> route('admin_paket_index') -> with(['success' => 'Data Berhasil Dihapus!']);

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\File;
 
 class AdminDestinasiController extends Controller
 {
@@ -85,17 +84,6 @@ class AdminDestinasiController extends Controller
             'deskripsi' => 'nullable',
         ]);
 
-        // upload image
-        if ($request -> hasFile('foto')) {
-            $extension = $request -> file('foto') -> getClientOriginalExtension();
-            $basename = uniqid() . time();
-
-            $namaFileFoto = "{$basename}.{$extension}";
-            $pathFoto = $request -> file('foto') -> storeAs('public/destinasi', $namaFileFoto);
-        } else {
-            $namaFileFoto = '';
-        }
-
         // Mengambil data checkbox hari_tutup dan tema yang dicentang/dipilih
         $hariTutup = [];
         for ($i = 1; $i <= 7; $i++) {
@@ -137,15 +125,34 @@ class AdminDestinasiController extends Controller
             'jam_lokasi' => $request -> input('jam_lokasi'),
             'harga_wni' => $request -> input('harga_wni'),
             'harga_wna' => $request -> input('harga_wna'),
-            'foto' => $namaFileFoto,
             'koordinat' => $koordinat,
             'deskripsi' => $deskripsi,
-            'hari_tutup' => $hariTutup,
-            'id_tema' => $tema
+            'hari_tutup' => json_encode($hariTutup),
+            'id_tema' => json_encode($tema)
         ];
 
+        // Siapkan permintaan multipart
+        $multipart = [];
+
+        // Tambahkan data ke multipart
+        foreach ($dataInput as $key => $value) {
+            $multipart[] = [
+                'name' => $key,
+                'contents' => $value
+            ];
+        }
+
+        // Tambahkan file ke multipart jika ada
+        if ($request -> hasFile('foto')) {
+            $multipart[] = [
+                'name' => 'foto',
+                'contents' => fopen($request->file('foto')->getRealPath(), 'r'),
+                'filename' => $request->file('foto')->getClientOriginalName()
+            ];
+        }
+
         // Kirim data ke Laravel API
-        $response = Http::post('http://localhost:8000/api/store-destinasi', $dataInput);
+        $response = Http::asMultipart() -> post('http://localhost:8000/api/store-destinasi', $multipart);
 
         // Proses respons dari API
         if ($response -> ok()) {
@@ -244,7 +251,7 @@ class AdminDestinasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $foto)
+    public function update(Request $request)
     {
         //validate form
         $request->validate([
@@ -260,20 +267,6 @@ class AdminDestinasiController extends Controller
             'koordinat' => 'nullable',
             'deskripsi' => 'nullable',
         ]);
-
-        // memberi nama image
-        if ($request -> hasFile('foto')) {
-            //delete old image
-            File::delete(public_path() ."/storage/destinasi/".$foto);
-
-            $extension = $request -> file('foto') -> getClientOriginalExtension();
-            $basename = uniqid() . time();
-
-            $namaFileFoto = "{$basename}.{$extension}";
-            $pathFoto = $request -> file('foto') -> storeAs('public/destinasi', $namaFileFoto);
-        } else {
-            $namaFileFoto = '';
-        }
 
         // Mengambil data checkbox hari_tutup dan tema yang dicentang/dipilih
         $hariTutup = [];
@@ -317,15 +310,34 @@ class AdminDestinasiController extends Controller
             'jam_lokasi' => $request -> input('jam_lokasi'),
             'harga_wni' => $request -> input('harga_wni'),
             'harga_wna' => $request -> input('harga_wna'),
-            'foto' => $namaFileFoto,
             'koordinat' => $koordinat,
             'deskripsi' => $deskripsi,
-            'hari_tutup' => $hariTutup,
-            'id_tema' => $tema
+            'hari_tutup' => json_encode($hariTutup),
+            'id_tema' => json_encode($tema)
         ];
 
+        // Siapkan permintaan multipart
+        $multipart = [];
+
+        // Tambahkan data ke multipart
+        foreach ($dataInput as $key => $value) {
+            $multipart[] = [
+                'name' => $key,
+                'contents' => $value
+            ];
+        }
+
+        // Tambahkan file ke multipart jika ada
+        if ($request -> hasFile('foto')) {
+            $multipart[] = [
+                'name' => 'foto',
+                'contents' => fopen($request->file('foto')->getRealPath(), 'r'),
+                'filename' => $request->file('foto')->getClientOriginalName()
+            ];
+        }
+
         // Kirim data ke Laravel API
-        $response = Http::post('http://localhost:8000/api/update-destinasi', $dataInput);
+        $response = Http::asMultipart() -> post('http://localhost:8000/api/update-destinasi', $multipart);
 
         // Proses respons dari API
         if ($response -> ok()) {
@@ -352,21 +364,15 @@ class AdminDestinasiController extends Controller
             exit;
         }
         else {
-            $data = [
+            $dataID = [
                 'id_destinasi' => $searchResponse['data']['id_destinasi']
             ];
 
             // Kirim data ke Laravel API
-            $deleteResponse = Http::post('http://localhost:8000/api/delete-destinasi', $data);
+            $deleteResponse = Http::post('http://localhost:8000/api/delete-destinasi', $dataID);
 
             // Proses respons dari API
             if ($deleteResponse -> ok()) {
-                // delete old image
-                if (!empty($searchResponse['data']['foto'])) {
-                    //delete old image
-                    File::delete(public_path() ."/storage/destinasi/".$searchResponse['data']['foto']);
-                }
-
                 // Data berhasil dikirimkan
                 session() -> flash('alert', 'Destinasi berhasil dihapus.');
                 return redirect() -> route('admin_destinasi_index') -> with(['success' => 'Data Berhasil Dihapus!']);

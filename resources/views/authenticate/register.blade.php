@@ -63,7 +63,7 @@
                                     <div class="snk">
                                         <p class="text-neutral mt-3">Dengan melakukan pendaftaran, saya setuji dengan<a href="" class="text-blue-primary"> Syarat & Ketentuan </a>dan<a href="" class="text-blue-primary"> Kebijakan Privasi </a>Lab Tour & Travel</p>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100 mt-1">Daftar</button>
+                                    <button type="submit" class="btn btn-primary w-100 mt-1" id="register-btn">Daftar</button>
                                     <p class="mt-3 text-neutral">atau</p>
                                     <button  class="btn btn-google">
                                         <a href="#" class="text-blue-primary">

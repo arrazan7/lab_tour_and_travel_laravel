@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container form-container">
-        <h6 class="text-center mb-4">Tambah Destinasi</h6>
+        <h6 class="text-center mb-4">Edit Destinasi</h6>
         <form action="{{ route('update_destinasi') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <label for="id_destinasi">ID Destinasi:</label>

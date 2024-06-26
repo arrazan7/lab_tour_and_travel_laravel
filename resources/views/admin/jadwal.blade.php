@@ -77,28 +77,28 @@
                         <td>{{ $json['koordinat_berangkat'] }}</td>
                         <td>{{ $json['koordinat_tiba'] }}</td>
                         <td>
-                            <a href="{{ route('edit_jarak_tempuh', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jarak Tempuh" data-toggle="tooltip">
+                            <a href="{{ route('edit_jarak_tempuh', ['id' => $json['id_jadwaldestinasi']]) }}" id="edit-jt-{{ $json['id_jadwaldestinasi'] }}" title="Edit Jarak Tempuh" data-toggle="tooltip">
                                 {{ $json['jarak_tempuh'] }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('edit_waktu_tempuh', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Waktu Tempuh" data-toggle="tooltip">
+                            <a href="{{ route('edit_waktu_tempuh', ['id' => $json['id_jadwaldestinasi']]) }}" id="edit-wt-{{ $json['id_jadwaldestinasi'] }}" title="Edit Waktu Tempuh" data-toggle="tooltip">
                                 {{ $json['waktu_tempuh'] }}
                             </a>
                         </td>
                         <td>{{ $json['waktu_sebenarnya'] }}</td>
                         <td>
-                            <a href="{{ route('edit_id_destinasi', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit ID Destinasi" data-toggle="tooltip">
+                            <a href="{{ route('edit_id_destinasi', ['id' => $json['id_jadwaldestinasi']]) }}" id="edit-id-{{ $json['id_jadwaldestinasi'] }}" title="Edit ID Destinasi" data-toggle="tooltip">
                                 [{{ $json['id_destinasi'] }}] {{ $json['nama_destinasi'] }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('edit_jam_mulai', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jam Mulai" data-toggle="tooltip">
+                            <a href="{{ route('edit_jam_mulai', ['id' => $json['id_jadwaldestinasi']]) }}" id="edit-mulai-{{ $json['id_jadwaldestinasi'] }}" title="Edit Jam Mulai" data-toggle="tooltip">
                                 {{ substr($json['jam_mulai'], 0, 5) }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('edit_jam_selesai', ['id' => $json['id_jadwaldestinasi']]) }}" title="Edit Jam Selesai" data-toggle="tooltip">
+                            <a href="{{ route('edit_jam_selesai', ['id' => $json['id_jadwaldestinasi']]) }}" id="edit-selesai-{{ $json['id_jadwaldestinasi'] }}" title="Edit Jam Selesai" data-toggle="tooltip">
                                 {{ substr($json['jam_selesai'], 0, 5) }}
                             </a>
                         </td>
@@ -108,7 +108,7 @@
                             <form action="{{ route('delete_jadwal', ['id' => $json['id_jadwaldestinasi']]) }}" method="GET" title="Hapus Jadwal" data-toggle="tooltip">
                             @csrf
                             @method('DELETE')
-                                <button class="fa-solid fa-trash fa-bounce" style="color: #ff0000;" onClick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')"></button>
+                                <button class="fa-solid fa-trash fa-bounce" id="del-jadwal-{{ $json['id_jadwaldestinasi'] }}" style="color: #ff0000;" onClick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')"></button>
                             </form>
                         </td>
                     </tr>

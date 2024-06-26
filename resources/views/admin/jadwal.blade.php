@@ -41,7 +41,7 @@
                 </tr>
             </table>
             <a href="{{ route('create_jadwal', ['id' => $responsePaket['data']['id_paketdestinasi']]) }}" method="GET" style="text-decoration: none;">
-                <button class="blue-pil form-control mt-2">Tambah Jadwal Destinasi</button>
+                <button class="blue-pil form-control mt-2" id="tambah-jadwal-destinasi">Tambah Jadwal Destinasi</button>
             </a>
         </div>
         <div class="table-responsive mt-4">

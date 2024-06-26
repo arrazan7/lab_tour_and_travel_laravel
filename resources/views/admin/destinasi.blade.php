@@ -2,7 +2,7 @@
 
 @section('content')
     <a href="{{ route('create_destinasi') }}">
-        <button class="blue-pil">
+        <button class="blue-pil" id="tambah-destinasi">
             + Tambah Destinasi
         </button>
     </a>

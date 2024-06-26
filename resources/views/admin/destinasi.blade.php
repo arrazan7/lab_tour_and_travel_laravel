@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 @forelse ($data as $json)
-                <tr onclick="openInNewTab('{{ route('admin_destinasi_show', ['id' => $json['id_destinasi']]) }}');" style="cursor: pointer;">
+                <tr id="show-destinasi-{{ $json['id_destinasi'] }}" onclick="openInNewTab('{{ route('admin_destinasi_show', ['id' => $json['id_destinasi']]) }}');" style="cursor: pointer;">
                     <td class="py-4">{{ $json['id_destinasi'] }}</td>
                     <td class="py-4">{{ $json['nama_destinasi'] }}</td>
                     <td class="py-4">{{ $json['kota'] }}</td>

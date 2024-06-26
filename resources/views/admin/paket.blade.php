@@ -35,7 +35,7 @@
                         <div class="overlay-text">
                             <p class="paket">{{ $json['nama_paket'] }}</p>
                             <span class="badge price">Rp<?php echo number_format($json['harga_wni'], 0, ',', '.'); ?></span>
-                            <a href="{{ route('admin_jadwal_index', ['id' => $json['id_paketdestinasi']]) }}" target="blank" id="detail-paket"><p>Lihat detail ></a></p>
+                            <a href="{{ route('admin_jadwal_index', ['id' => $json['id_paketdestinasi']]) }}" target="blank" id="detail-paket-{{ $json['id_paketdestinasi'] }}"><p>Lihat detail ></a></p>
                         </div>
                     </div>
                 </div>

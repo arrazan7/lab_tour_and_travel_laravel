@@ -8,7 +8,7 @@
         @csrf
             <div class="mb-3 mt-3">
                 <label for="id_paket">ID Paket Destinasi:</label>
-                <input type="number" value="{{ $id_paketdestinasi }}" class="form-control" id="id_paket" name="id_paketdestinasi" readonly>
+                <input type="number" value="{{ $id_paketdestinasi }}" class="form-control @error('id_paketdestinasi') is-invalid @enderror" id="id_paket" name="id_paketdestinasi" readonly>
             </div>
             <div class="mb-3 mt-3">
                 <p class="mb-0">Pilih Hari:</p>
@@ -26,6 +26,9 @@
                 <label for="day6">Sabtu</label><br>
                 <input type="radio" id="day7" name="hari" value="Minggu">
                 <label for="day7">Minggu</label>
+                @error('hari')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="koor_brgkt">Koordinat Berangkat:</label>
@@ -37,11 +40,17 @@
             </div>
             <div class="mb-3">
                 <label for="jrk_tph">Jarak Tempuh:</label>
-                <input type="number" step="0.1" class="form-control" id="jrk_tph" placeholder="(kilometer)" name="jarak_tempuh">
+                <input type="number" step="0.1" class="form-control @error('jarak_tempuh') is-invalid @enderror" id="jrk_tph" placeholder="(kilometer)" name="jarak_tempuh">
+                @error('jarak_tempuh')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="wkt_tph">Waktu Tempuh:</label>
-                <input type="number" class="form-control" id="wkt_tph" placeholder="(menit)" name="waktu_tempuh">
+                <input type="number" class="form-control @error('waktu_tempuh') is-invalid @enderror" id="wkt_tph" placeholder="(menit)" name="waktu_tempuh">
+                @error('waktu_tempuh')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="id_dest">Tujuan Destinasi:</label><br>
@@ -50,14 +59,23 @@
                         <option value="{{ $destinasi['id_destinasi'] }}">{{ $destinasi['nama_destinasi'] }}</option>
                     @endforeach
                 </select>
+                @error('id_destinasi')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="jam_mulai">Jam Mulai:</label>
-                <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d)" class="form-control" id="jam_mulai" placeholder="HH:MM" name="jam_mulai">
+                <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d)" class="form-control @error('jam_mulai') is-invalid @enderror" id="jam_mulai" placeholder="HH:MM" name="jam_mulai">
+                @error('jam_mulai')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="jam_selesai">Jam Selesai:</label>
-                <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d)" class="form-control" id="jam_selesai" placeholder="HH:MM" name="jam_selesai">
+                <input type="text" pattern="(?:[01]\d|2[0123]):(?:[012345]\d)" class="form-control @error('jam_selesai') is-invalid @enderror" id="jam_selesai" placeholder="HH:MM" name="jam_selesai">
+                @error('jam_selesai')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="jam_lokasi">Jam Lokasi:</label><br>
@@ -66,13 +84,16 @@
                     <option value="WITA">WITA</option>
                     <option value="WIT">WIT</option>
                 </select>
+                @error('jam_lokasi')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="ctt">Catatan Jadwal:</label>
                 <textarea type="text" class="form-control" id="ctt" placeholder="Catatan" name="catatan"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary mb-3" name="submit" id="create-jadwal">Create</button>
+            <button type="submit" class="btn btn-primary mb-3" name="submit" value="submit" id="create-jadwal">Create</button>
         </form>
     </div>
 @endsection

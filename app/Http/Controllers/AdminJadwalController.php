@@ -81,8 +81,23 @@ class AdminJadwalController extends Controller
      */
     public function store(Request $request)
     {
+        // //dd($request -> all());
+        // //validate form
+        // $request->validate([
+        //     'id_paket' => 'required|numeric',
+        //     'hari' => 'required',
+        //     'jarak_tempuh' => 'required|numeric',
+        //     'waktu_tempuh' => 'required|numeric',
+        //     'id_destinasi' => 'required|string',
+        //     'jam_mulai' => 'required|string',
+        //     'jam_selesai' => 'required|string',
+        //     'jam_lokasi' => 'required|string'
+        // ]);
+
         // Ambil data input dari form
         $data = $request -> all();
+
+
 
         // Kirim data ke Laravel API
         $response = Http::post('http://localhost:8000/api/store-jadwal', $data);

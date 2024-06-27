@@ -34,31 +34,31 @@
                                 <form class="mt-5" action="{{ route('register_store') }}" method="POST">
                                 @csrf
                                     <div class="mb-3">
-                                        <input type="text" value="{{ old('full_name') }}" class="form-control input-field @error('full_name') is-invalid @enderror" name="full_name" placeholder="Nama Lengkap">
+                                        <input type="text" value="{{ old('full_name') }}" class="form-control input-field @error('full_name') is-invalid @enderror" name="full_name" id="full_name" placeholder="Nama Lengkap">
                                         @error('full_name')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" value="{{ old('name') }}" class="form-control input-field @error('name') is-invalid @enderror" name="name" placeholder="Username">
+                                        <input type="text" value="{{ old('name') }}" class="form-control input-field @error('name') is-invalid @enderror" name="name" id="username" placeholder="Username">
                                         @error('name')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <input type="email" value="{{ old('email') }}" class="form-control input-field @error('email') is-invalid @enderror" name="email" placeholder="Email">
+                                        <input type="email" value="{{ old('email') }}" class="form-control input-field @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email">
                                         @error('email')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <input type="password" class="form-control input-field @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                        <input type="password" class="form-control input-field @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
                                         @error('password')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <input type="password" class="form-control input-field" name="password_confirmation" placeholder="Konfirmasi Password">
+                                        <input type="password" class="form-control input-field" name="password_confirmation" id="password_confirmation" placeholder="Konfirmasi Password">
                                     </div>
                                     <div class="snk">
                                         <p class="text-neutral mt-3">Dengan melakukan pendaftaran, saya setuji dengan<a href="" class="text-blue-primary"> Syarat & Ketentuan </a>dan<a href="" class="text-blue-primary"> Kebijakan Privasi </a>Lab Tour & Travel</p>

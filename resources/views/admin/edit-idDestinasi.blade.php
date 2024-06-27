@@ -26,7 +26,7 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary mb-3" name="submit" value="edit-id-destinasi">Save</button>
+            <button type="submit" class="btn btn-primary mb-3" name="submit" id="edit-id-destinasi">Save</button>
         </form>
     </div>
 @endsection

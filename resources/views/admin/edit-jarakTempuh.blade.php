@@ -22,7 +22,7 @@
                 <label for="jarak">Jarak Tempuh:</label>
                 <input type="number" value="{{ $data['jarak_tempuh'] }}" class="form-control" id="jarak" placeholder="(kilometer)" name="jarak_tempuh" step="0.1">
             </div>
-            <button type="submit" class="btn btn-primary mb-3" name="submit" id="edit-waktu-tempuh">Save</button>
+            <button type="submit" class="btn btn-primary mb-3" name="submit" id="edit-jarak-tempuh">Save</button>
         </form>
     </div>
 @endsection
